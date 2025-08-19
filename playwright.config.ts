@@ -13,31 +13,13 @@ export default defineConfig({
   /* Run tests in files in parallel */
   fullyParallel: true,
 
-  use: {
-    baseURL: 'https://en.wikipedia.org',
-    // run traces on the first retry of a failed test
-    trace: 'on-first-retry',
-  },
+
 
   projects: [
     // this matches all tests ending with .setup.ts
     {
       name: 'setup',
-      testMatch: '**/*.setup.ts',
-    },
-    // this project depends on the setup project and matches all tests ending with loggedin.spec.ts
-    {
-      name: 'e2e tests logged in',
-      testMatch: '**/*loggedin.spec.ts',
-      dependencies: ['setup'],
-      use: {
-        storageState: STORAGE_STATE,
-      },
-    },
-    // this project runs all tests except the setup and logged in tests
-    {
-      name: 'e2e tests',
-      testIgnore: ['**/*.spec.ts'],
-    },
+      testMatch: '**/*.spec.ts',
+    }
   ],
 });
